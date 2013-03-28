@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="geoffgarside"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -37,25 +37,15 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 
-alias c=clear
-alias cl='clear; ls -lA1'
-alias o='open . &'
-alias ,='cd ..'
+# Custom snarky prompt + Git/source control right-hand prompt
+#using https://github.com/olivierverdier/zsh-git-prompt
+source ~/dotfiles/gitprompt.sh
+precmd() {
+    update_current_git_vars
+}
+PROMPT='C:%d>'
+RPROMPT=$'$(git_super_status)'
 
-# Git
-alias g='git status'
-alias gs='git show'
-alias gl='git log'
-alias gitlog='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-alias gb='git branch -a'
-alias gd='git diff'
-alias ga='git add'
-alias gc='git commit -m'
-alias gca='git commit -v -a'
-alias gprom='git pull --rebase origin master'
-alias gpom='git push origin master'
-alias gp='git pull'
-alias grh='git reset --hard'
-alias gclean='git branch --merged | xargs git branch -d; git remote prune origin'
+# Custom additions to PATH var (git, Android tools)
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Applications/adt-bundle-mac-x86_64/sdk/tools:/Applications/adt-bundle-mac-x86_64/sdk/platform-tools

@@ -1,26 +1,9 @@
 [user]
-	name = Matt Carrier
-	email = icecreammatt@gmail.com
-[color]
-	ui = true
+	name = Daryll Herberger
+	email = daryllh@vertigo.com
+[credential]
+	helper = osxkeychain
+[push]
+	default = matching
 [merge]
-	tool = p4merge
-[core]
-	excludesfile = /Users/matt/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[merge]
-	tool = p4merge
-	keepBackup = false
-[mergetool "p4merge"]
-	cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-	keepTemporaries = false
-	trustExitCode = false
-	keepBackup = false
-#[diff]
-#	external = p4diff
-#	guitool = P4merge
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+	tool = opendiff
