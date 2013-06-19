@@ -7,3 +7,5 @@
 	default = matching
 [merge]
 	tool = opendiff
+[alias]
+	plum = "!sh -c 'git pull; git remote prune origin; git branch --merged | grep -v -E \"(\\*|master)\" | xargs -n 1 git branch -d'"
