@@ -32,7 +32,7 @@ ZSH_THEME="geoffgarside"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git bundler rails rails-api rake)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -47,5 +47,10 @@ precmd() {
 PROMPT='C:%d>'
 RPROMPT=$'$(git_super_status)'
 
-# Custom additions to PATH var (git, Android tools)
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Applications/adt-bundle-mac-x86_64/sdk/tools:/Applications/adt-bundle-mac-x86_64/sdk/platform-tools
+# Custom additions to PATH var (git, Android tools, my dotfiles repo, rbenv)
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/Applications/Android\ Studio.app/sdk/tools:/Applications/Android\ Studio.app/sdk/platform-tools:$HOME/dotfiles/:$HOME/.rbenv/bin
+
+# Init rbenv (to allow for multiple Ruby versions)
+eval "$(rbenv init -)"
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
