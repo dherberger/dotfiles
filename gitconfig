@@ -1,6 +1,6 @@
 [user]
-	name = Daryll Herberger
-	email = daryllh@vertigo.com
+	name = Daryll Drexler
+	email = daryll@uber.com
 [credential]
 	helper = osxkeychain
 [push]
@@ -8,4 +8,28 @@
 [merge]
 	tool = opendiff
 [alias]
-	plum = "!sh -c 'git pull; git remote prune origin; git branch --merged | grep -v -E \"(\\*|master)\" | xargs -n 1 git branch -d'"
+	satas=status
+	stas=status
+	stat=status
+	stats=status
+	statu=status
+	st=status
+	diff=difftool
+	ci=commit
+	pul="!sh -c 'git pull && git submodule sync --recursive && git submodule update --init --recursive;'"
+[branch]
+	autosetuprebase = always
+[rerere]
+	enabled = true
+[url "ssh://gitolite@code.uber.internal/"]
+	insteadOf = git://code.uber.internal/
+[url "ssh://git@github.com/uber/"]
+	insteadOf = https://github.com/uber/
+[core]
+	excludesfile = /Users/daryll/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
