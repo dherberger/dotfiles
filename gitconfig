@@ -31,5 +31,15 @@
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Users/daryll/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[url "ssh://gitolite@code.uber.internal:2222/"]
+	insteadOf = https://code.uber.internal/
+[url "ssh://code.uber.internal/"]
+	insteadOf = https://code.uber.internal/
+[url "ssh://config.uber.internal/"]
+	insteadOf = https://config.uber.internal/
+[http "https://gopkg.uberinternal.com"]
+	followRedirects = true
+[http "https://gopkg.in"]
+	followRedirects = true

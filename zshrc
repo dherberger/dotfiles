@@ -10,6 +10,7 @@ ZSH_THEME="geoffgarside"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias buildlib='gradlew assembleDebug && gradlew uploadArchives'
 alias gitv='git show --abbrev-commit | grep commit'
 alias shortlog='git log --decorate --oneline'
 alias subu='git submodule sync --recursive && git submodule update --init --recursive'
@@ -18,13 +19,17 @@ alias br='git for-each-ref --format="%(*committerdate:raw)%(committerdate:raw) %
 alias cob='git checkout -b'
 alias arcprm='git branch | grep arcpatch- | xargs -I {} git branch -D {}'
 alias pull='f() { git pull && git submodule sync --recursive && git submodule update --init --recursive; }; f'
+alias pu=pull
 alias pul=pull
 alias opne=open
 alias oepn=open
 alias opnep=openp
 alias oepnp=openp
-alias pi='pod install'
+alias pi='pod _0.39.0_ install && terminal-notifier -message "Pod install complete"'
 alias grhh='git reset --hard HEAD'
+alias cleanLocalPhabTags='git tag -l | grep "phabricator" | xargs git tag -d'
+alias cleanRemotePhabTags='git pull origin master --tags && git tag -l | grep "phabricator" | awk '\''{print ":"$0}'\'' | xargs git push origin && git tag -l | xargs git tag -d && git pull origin master --tags'
+alias helix='./apps/iphone-helix/script/bootstrap && open ./apps/iphone-helix/src/Rider.xcworkspace'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -79,11 +84,17 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 cdsync () {
     cd $(boxer sync_dir $@)
 }
+
 editsync () {
     $EDITOR $(boxer sync_dir $@)
 }
+
 opensync () {
     open $(boxer sync_dir $@)
+}
+
+function update(){
+  git checkout master && pul && git checkout - && git rebase master
 }
 
 rdio() {
@@ -97,6 +108,7 @@ rdio() {
     perl -pi -e "s/\/\/#define RDIO_FRAMEWORK_AVAILABLE 1/#define RDIO_FRAMEWORK_AVAILABLE 1/" UberDriver/UBHarmony.h
     pi
 }
+
 openp(){ 
     if test -n "$(find . -maxdepth 1 -name '*.xcworkspace' -print -quit)"
     then
