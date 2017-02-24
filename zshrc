@@ -93,8 +93,12 @@ opensync () {
     open $(boxer sync_dir $@)
 }
 
+function revise(){
+    git add . && git commit --amend
+}
+
 function update(){
-  git checkout master && pul && git checkout - && git rebase master
+    git checkout master && pul && git checkout - && git rebase master
 }
 
 rdio() {
